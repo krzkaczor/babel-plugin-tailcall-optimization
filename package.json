@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/krzkaczor/babel-plugin-tco.git"
+    "url": "git+https://github.com/krzkaczor/babel-plugin-tailcall-optimization.git"
   },
   "author": "Krzysztof Kaczor",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/krzkaczor/babel-plugin-tco/issues"
+    "url": "https://github.com/krzkaczor/babel-plugin-tailcall-optimization/issues"
   },
-  "homepage": "https://github.com/krzkaczor/babel-plugin-tco",
+  "homepage": "https://github.com/krzkaczor/babel-plugin-tailcall-optimization",
   "dependencies": {
     "babel-preset-es2015": "^6.13.0",
     "babel-traverse": "^6.13.0",
