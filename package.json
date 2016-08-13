@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-tailcall-optimization",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Tail call optimization for JavaScript!",
   "main": "build/lib.js",
   "scripts": {
@@ -37,6 +37,8 @@
     "standard": "7.1.2"
   },
   "standard": {
-    "env": [ "mocha" ]
+    "env": [
+      "mocha"
+    ]
   }
 }
