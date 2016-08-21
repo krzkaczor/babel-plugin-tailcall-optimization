@@ -1,9 +1,12 @@
 // based on https://phabricator.babeljs.io/T6869
-const buttons = document.getElementsByTagName('button')
 
-const printIndex = (index = 2) => {
-  buttons.item(index).addEventListener('click', () => console.log(index))
-  if (index) return printIndex(index - 1)
+const generatePrinters = (index = 10, printers = []) => {
+  printers.push(() => index)
+  if (index > 0) {
+    return generatePrinters(index - 1, printers)
+  } else {
+    return printers
+  }
 }
 
-module.exports = printIndex
+module.exports = generatePrinters

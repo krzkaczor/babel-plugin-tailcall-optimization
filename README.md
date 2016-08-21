@@ -16,7 +16,5 @@ function counter (n, acc = 0) {
 ```
 
 ## Todo:
- - proper recognizing TCOs (now only function declaration node is checked)
- - work around TCOs & closures
  - test with bigger code base
- - examples including traditional tail called recursions (Fibonacci etc)
+ - benchmarks
