@@ -3,7 +3,14 @@
 
 Tail call optimization for JavaScript!
 
-`npm i babel-plugin-tailcall-optimization`
+## Installation
+
+`npm install babel-plugin-tailcall-optimization --save-dev`
+
+and add to your `.babelrc`:
+
+`"plugins": ["tailcall-optimization"]`
+
 
 ## How does it work?
 We rewrite functions with tail calls to ones using while loops. Original function with tail call:
