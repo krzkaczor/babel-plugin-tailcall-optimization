@@ -50,7 +50,4 @@ Fibonacci Sequence with TCO x 1,298,276 ops/sec ±1.24% (83 runs sampled)
 
 So function after TCO optimization is almost **5 times faster**.
 
-[Benchmark code]() 
-
-## Todo:
- - test with bigger code base
+[Benchmark code](https://github.com/krzkaczor/babel-plugin-tailcall-optimization/blob/master/benchmark/fibonacciSeq.js) 
