@@ -3,6 +3,8 @@
 
 Tail call optimization for JavaScript!
 
+`npm i babel-plugin-tailcall-optimization`
+
 ## How does it work?
 We rewrite functions with tail calls to ones using while loops. Original function with tail call:
 ```
@@ -50,4 +52,7 @@ Fibonacci Sequence with TCO x 1,298,276 ops/sec ±1.24% (83 runs sampled)
 
 So function after TCO optimization is almost **5 times faster**.
 
-[Benchmark code](https://github.com/krzkaczor/babel-plugin-tailcall-optimization/blob/master/benchmark/fibonacciSeq.js) 
+[Benchmark code](https://github.com/krzkaczor/babel-plugin-tailcall-optimization/blob/master/benchmark/fibonacciSeq.js)
+ 
+## Known issues
+Currently when plugin detects function creation within tailcalled function it does not optimize it. It's releated to this bug in old babel implementation:  https://phabricator.babeljs.io/T6869
