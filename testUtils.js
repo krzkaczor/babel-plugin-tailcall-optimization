@@ -1,17 +1,24 @@
 const fs = require('fs')
-const {join} = require('path')
+const { join } = require('path')
 const babel = require('babel-core')
 
 function withExample (exampleName) {
   return (testSuite) => function () {
     const exampleCode = fs.readFileSync(join(__dirname, `./examples/${exampleName}`)).toString()
     this.ctx.rawModule = getModule(exampleCode)
-    const {module, transpiledCode} = compileAndGetModule(exampleCode)
+    const { module, transpiledCode } = compileAndGetModule(exampleCode)
     this.ctx.module = module
     this.ctx.transpiledCode = transpiledCode
 
     testSuite.apply(this)
   }
+}
+
+function optimizeTailCalls (path) {
+  const rawJsCode = fs.readFileSync(path).toString()
+  const { module } = compileAndGetModule(rawJsCode)
+
+  return module
 }
 
 function compileAndGetModule (code) {
@@ -20,7 +27,7 @@ function compileAndGetModule (code) {
     plugins: [ pluginPath ]
   })
 
-  return {module: getModule(output.code), transpiledCode: output.code}
+  return { module: getModule(output.code), transpiledCode: output.code }
 }
 
 function getModule (code) {
@@ -34,6 +41,7 @@ function getModule (code) {
 
 module.exports = {
   withExample,
+  optimizeTailCalls,
   compileAndGetModule,
   getModule
 }
