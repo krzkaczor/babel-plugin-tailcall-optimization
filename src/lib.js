@@ -82,10 +82,12 @@ export default function ({ types: t }) {
 
   const functions = {
     FunctionDeclaration (path) {
-      const { tailCalls, needsClosure } = findTailCalls(path, path.node.id.name)
+      if (path.node.id) {
+        const {tailCalls, needsClosure} = findTailCalls(path, path.node.id.name)
 
-      if (tailCalls) {
-        optimizeTailCalls(path, tailCalls, needsClosure)
+        if(tailCalls) {
+          optimizeTailCalls(path, tailCalls, needsClosure)
+        }
       }
     },
 
