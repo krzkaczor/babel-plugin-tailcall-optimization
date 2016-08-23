@@ -63,3 +63,5 @@ So function after TCO optimization is almost **5 times faster**.
  
 ## Known issues
 Currently when plugin detects function creation within tailcalled function it does not optimize it. It's releated to this bug in old babel implementation:  https://phabricator.babeljs.io/T6869
+
+It does not work for mutual recursive functions. I guess it's not super big problem - even JVM does not do this.
