@@ -4,8 +4,10 @@ const babel = require('babel-core')
 
 function withExample (exampleName) {
   return (testSuite) => function () {
-    const exampleCode = fs.readFileSync(join(__dirname, `./examples/${exampleName}`)).toString()
-    this.ctx.rawModule = getModule(exampleCode)
+    const exampleRelativePath = `./examples/${exampleName}`
+    const exampleCode = fs.readFileSync(join(__dirname, exampleRelativePath)).toString()
+
+    this.ctx.rawModule = require(exampleRelativePath)
     const { module, transpiledCode } = compileAndGetModule(exampleCode)
     this.ctx.module = module
     this.ctx.transpiledCode = transpiledCode

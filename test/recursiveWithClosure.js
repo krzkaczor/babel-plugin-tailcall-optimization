@@ -17,7 +17,7 @@ describe('Recursion with closures', withExample('recursiveWithClosure.js')(funct
   })
 
   it('should not work without TCO optimization for bigger n', function () {
-    expect(() => this.rawModule(50000)).to.throw()
+    expect(() => this.rawModule(50000)).to.throw('Maximum call stack size exceeded')
   })
 
   // for now it's not implemented

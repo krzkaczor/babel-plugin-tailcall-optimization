@@ -85,7 +85,7 @@ export default function ({ types: t }) {
       if (path.node.id) {
         const {tailCalls, needsClosure} = findTailCalls(path, path.node.id.name)
 
-        if(tailCalls) {
+        if (tailCalls) {
           optimizeTailCalls(path, tailCalls, needsClosure)
         }
       }
