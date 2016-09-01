@@ -5,16 +5,20 @@ Tail call optimization for JavaScript!
 
 ## Installation
 
-`npm install babel-plugin-tailcall-optimization --save-dev`
+```bash
+npm install babel-plugin-tailcall-optimization --save-dev
+```
 
 and add to your `.babelrc`:
 
-`"plugins": ["tailcall-optimization"]`
+```js
+"plugins": ["tailcall-optimization"]
+```
 
 
 ## How does it work?
 We rewrite functions with tail calls to ones using while loops. Original function with tail call:
-```
+```js
 function counter (n, acc = 0) {
   if (n === 0) {
     return acc
@@ -25,7 +29,7 @@ function counter (n, acc = 0) {
 ```
 
 gets rewritten to this:
-```
+```js
 function counter(n, acc = 0) {
   var _repeat = true;
 
