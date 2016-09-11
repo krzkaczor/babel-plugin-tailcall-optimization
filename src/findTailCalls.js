@@ -1,6 +1,6 @@
 const inFunctionTraversal = {
   ReturnStatement (path) {
-    if (path.node.argument.type === 'CallExpression' && path.node.argument.callee.name === this.functionName) {
+    if (path.node.argument && path.node.argument.type === 'CallExpression' && path.node.argument.callee.name === this.functionName) {
       this.tailCalls.push(path)
     }
   },
