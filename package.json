@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-tailcall-optimization",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Tail call optimization for JavaScript!",
   "main": "build/lib.js",
   "scripts": {
