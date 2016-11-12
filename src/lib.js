@@ -30,9 +30,9 @@ export default function ({ types: t }) {
 
     tailCalls.forEach(tailCall => {
       // first we assign to tmp variable...
-      const assignmentsToTmpInputs = tmpInputVariables.map((tmpInputVar, index) => t.assignmentExpression('=', tmpInputVar, tailCall.node.argument.arguments[ index ]))
+      const assignmentsToTmpInputs = tmpInputVariables.map((tmpInputVar, index) => t.expressionStatement(t.assignmentExpression('=', tmpInputVar, tailCall.node.argument.arguments[ index ])))
       // and then we do a swap
-      const swapTmpInputWithInput = inputVariables.map((inputVar, index) => t.assignmentExpression('=', inputVar, tmpInputVariables[ index ]))
+      const swapTmpInputWithInput = inputVariables.map((inputVar, index) => t.expressionStatement(t.assignmentExpression('=', inputVar, tmpInputVariables[ index ])))
 
       tailCall.replaceWithMultiple([
         ...assignmentsToTmpInputs,
