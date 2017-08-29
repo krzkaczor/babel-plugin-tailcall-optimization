@@ -1,7 +1,7 @@
 const expect = require('chai').expect
 const {withExample} = require('../testUtils')
 
-describe('Counter example', withExample('counter.js')(function () {
+const testSuite = function () {
   it('should fail without TCO plugin', function () {
     const counter = this.rawModule
 
@@ -13,4 +13,9 @@ describe('Counter example', withExample('counter.js')(function () {
 
     expect(counter(1000 * 1000)).to.be.eq(1000000)
   })
+}
+
+describe('Counter example', withExample('counter.js')(() => {
+  testSuite()
+  describe('with ternary expression', withExample('counterWithTernary.js')(testSuite))
 }))

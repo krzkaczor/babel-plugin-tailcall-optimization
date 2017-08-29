@@ -1,4 +1,5 @@
 const findTailCalls = require('./findTailCalls')
+const returnTernaryToIfElse = require('./returnTernaryToIfElse')
 
 export default function ({ types: t }) {
   function optimizeTailCalls (functionPath, tailCalls) {
@@ -85,6 +86,7 @@ export default function ({ types: t }) {
   return {
     visitor: {
       Program (path) {
+        path.traverse(returnTernaryToIfElse(t))
         path.traverse(functions)
       }
     }
