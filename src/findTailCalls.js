@@ -1,6 +1,32 @@
+const isCallExpressionWithTco = (functionName, node) => {
+  return (
+    (node.type === 'CallExpression' && node.callee.name === functionName)
+  )
+}
+
+const isConditionalExpressionWithTco = (functionName, node) => {
+  if (node.type === 'ConditionalExpression') {
+    const { consequent, alternate } = node
+
+    return (
+      isExpressionWithTco(functionName, consequent) ||
+      isExpressionWithTco(functionName, alternate)
+    )
+  }
+
+  return false
+}
+
+const isExpressionWithTco = (functionName, node) => {
+  return (
+    isCallExpressionWithTco(functionName, node) ||
+    isConditionalExpressionWithTco(functionName, node)
+  )
+}
+
 const inFunctionTraversal = {
   ReturnStatement (path) {
-    if (path.node.argument && path.node.argument.type === 'CallExpression' && path.node.argument.callee.name === this.functionName) {
+    if (path.node.argument && isExpressionWithTco(this.functionName, path.node.argument)) {
       this.tailCalls.push(path)
     }
   },
