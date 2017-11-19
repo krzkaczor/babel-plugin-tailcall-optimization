@@ -1,7 +1,7 @@
 const expect = require('chai').expect
 const { withExample } = require('../testUtils')
 
-describe('Multiple tail calls calls example', withExample('multipleCalls.js')(function () {
+const testSuite = function () {
   it('should work for small n without TCO plugin', function () {
     const counter = this.rawModule
 
@@ -25,4 +25,9 @@ describe('Multiple tail calls calls example', withExample('multipleCalls.js')(fu
 
     expect(counter(100 * 1000)).to.be.eq(9991009)
   })
+}
+
+describe('Multiple tail calls calls example', withExample('multipleCalls.js')(() => {
+  testSuite()
+  describe('with ternary expressions', withExample('multipleCallsWithTernary.js')(testSuite))
 }))
