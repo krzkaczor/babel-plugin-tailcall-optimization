@@ -9,7 +9,7 @@
     "prestart": "npm run compile",
     "start": "node build/lib.js",
     "pretest": "npm run compile:dev",
-    "prepublish": "npm run compile",
+    "prepublishOnly": "npm run compile",
     "lint": "standard --fix",
     "test": "npm run lint && mocha --compilers js:babel-register",
     "prebenchmark": "npm run compile:dev",
