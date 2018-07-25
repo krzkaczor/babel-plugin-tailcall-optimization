@@ -25,6 +25,12 @@ const isExpressionWithTco = (functionName, node) => {
 }
 
 const inFunctionTraversal = {
+  ConditionalExpression (path) {
+    if (path.parent.type === 'ArrowFunctionExpression' && isConditionalExpressionWithTco(this.functionName, path.node)) {
+      this.tailCalls.push(path)
+    }
+  },
+
   ReturnStatement (path) {
     if (path.node.argument && isExpressionWithTco(this.functionName, path.node.argument)) {
       this.tailCalls.push(path)

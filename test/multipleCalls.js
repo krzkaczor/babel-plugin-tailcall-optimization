@@ -30,4 +30,5 @@ const testSuite = function () {
 describe('Multiple tail calls calls example', withExample('multipleCalls.js')(() => {
   testSuite()
   describe('with ternary expressions', withExample('multipleCallsWithTernary.js')(testSuite))
+  describe('with ternary expressions in concise body of an arrow function', withExample('multipleCallsInArrowFnWithTernary.js')(testSuite))
 }))

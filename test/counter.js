@@ -18,4 +18,5 @@ const testSuite = function () {
 describe('Counter example', withExample('counter.js')(() => {
   testSuite()
   describe('with ternary expression', withExample('counterWithTernary.js')(testSuite))
+  describe('as arrow function with ternary expression in concise body', withExample('counterAsArrowFnWithTernary.js')(testSuite))
 }))

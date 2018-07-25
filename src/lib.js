@@ -28,21 +28,35 @@ export default function ({ types: t }) {
     const tmpInputVariables = inputVariables.map(v => functionPath.scope.generateUidIdentifier(v.name))
     const tmpInputVariablesDeclaration = t.variableDeclaration('var', tmpInputVariables.map(v => t.variableDeclarator(v)))
 
+    function ifStatementFromConditionalExpression (conditionalExpression) {
+      const { test, consequent, alternate } = conditionalExpression
+
+      return t.ifStatement(
+        test,
+        t.blockStatement([t.returnStatement(consequent)]),
+        t.blockStatement([t.returnStatement(alternate)])
+      )
+    }
+
+    function findAndReplaceTailcallsInPath (path) {
+      const { tailCalls } = findTailCalls(path, functionName)
+
+      replaceTailcall(tailCalls)
+    }
+
     function replaceTailcall (tailCalls) {
       tailCalls.forEach(tailCall => {
-        if (tailCall.node.argument.type === 'ConditionalExpression') {
-          const { test, consequent, alternate } = tailCall.node.argument
+        if (tailCall.node.type === 'ConditionalExpression') {
+          const parentArrowFn = tailCall.parentPath
 
-          tailCall.replaceWith(
-            t.ifStatement(
-              test,
-              t.blockStatement([t.returnStatement(consequent)]),
-              t.blockStatement([t.returnStatement(alternate)])
-            )
-          )
+          parentArrowFn.node.body = t.blockStatement([ifStatementFromConditionalExpression(tailCall.node)])
+          parentArrowFn.node.expression = false
 
-          const { tailCalls: tailCallsFromTernary } = findTailCalls(tailCall, functionName)
-          replaceTailcall(tailCallsFromTernary)
+          findAndReplaceTailcallsInPath(parentArrowFn)
+        } else if (tailCall.node.argument.type === 'ConditionalExpression') {
+          tailCall.replaceWith(ifStatementFromConditionalExpression(tailCall.node.argument))
+
+          findAndReplaceTailcallsInPath(tailCall)
         } else {
           // first we assign to tmp variable...
           const assignmentsToTmpInputs = tmpInputVariables.map((tmpInputVar, index) =>
