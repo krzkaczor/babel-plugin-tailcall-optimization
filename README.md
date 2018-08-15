@@ -5,6 +5,8 @@ Tail call optimization for JavaScript!
 
 ## Installation
 
+*if you use babel@7 take a look at [next](https://github.com/krzkaczor/babel-plugin-tailcall-optimization/tree/next) branch*
+
 ```bash
 npm install babel-plugin-tailcall-optimization --save-dev
 ```
@@ -66,6 +68,6 @@ So function after TCO optimization is almost **5 times faster**.
 [Benchmark code](https://github.com/krzkaczor/babel-plugin-tailcall-optimization/blob/master/benchmark/fibonacciSeq.js)
  
 ## Known issues
-Currently when plugin detects function creation within tailcalled function it does not optimize it. It's releated to this bug in old babel implementation:  https://phabricator.babeljs.io/T6869
+ - Currently when plugin detects function creation within tailcalled function it does not optimize it. It's related to difficulties in implementation (function scoping rules). Read more: https://phabricator.babeljs.io/T6869
 
-It does not work for mutual recursive functions. I guess it's not super big problem - even JVM does not do this.
+ - It does not work for mutual recursive functions. I guess it's not super big problem - even JVM does not do this.
