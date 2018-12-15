@@ -1,6 +1,6 @@
 const fs = require('fs')
 const { join } = require('path')
-const babel = require('babel-core')
+const babel = require('@babel/core')
 
 function withExample (exampleName) {
   return (testSuite) => function () {
