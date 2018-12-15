@@ -5,8 +5,6 @@ Tail call optimization for JavaScript!
 
 ## Installation
 
-*if you use babel@6 use `babel-plugin-tailcall-optimization@1` package.
-
 ```bash
 npm install babel-plugin-tailcall-optimization --save-dev
 ```
@@ -16,6 +14,8 @@ and add to your `.babelrc`:
 ```js
 "plugins": ["tailcall-optimization"]
 ```
+
+*if you use babel@6 use `babel-plugin-tailcall-optimization@1` package*
 
 
 ## How does it work?
