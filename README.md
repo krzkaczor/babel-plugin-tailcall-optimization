@@ -5,7 +5,7 @@ Tail call optimization for JavaScript!
 
 ## Installation
 
-*if you use babel@7 take a look at [next](https://github.com/krzkaczor/babel-plugin-tailcall-optimization/tree/next) branch*
+*if you use babel@6 use `babel-plugin-tailcall-optimization@1` package.
 
 ```bash
 npm install babel-plugin-tailcall-optimization --save-dev
